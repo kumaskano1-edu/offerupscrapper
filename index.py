@@ -10,11 +10,11 @@ def get_offerup_posts():
     filteredArray = []
     try:
         # Make a GET request to the OfferUp API
-        posts = fetch.get_listings(query="samsung 55", state="California", city="Los Angeles", limit=30)
+        posts = fetch.get_listings(query="Samsung 55", state="California", city="Los Angeles", limit=30)
         # Define a lambda function to filter out listings with a price over $300
         for post in posts:
             price = int(post["price"])
-            if price <= 150:
+            if price <= 180 and price > 80:
                 filteredArray.append(post)
         filtered_posts = json.dumps(filteredArray)
         return filtered_posts
