@@ -13,7 +13,7 @@ def get_offerup_posts():
         posts = fetch.get_listings(query="Samsung 55", state="California", city="Los Angeles", limit=30)
         # Define a lambda function to filter out listings with a price over $300
         for post in posts:
-            price = int(post["price"])
+            price = float(post["price"])
             if price <= 180 and price > 80:
                 filteredArray.append(post)
         filtered_posts = json.dumps(filteredArray)
