@@ -23,6 +23,8 @@ def get_offerup_posts():
                 filtered_array.append(post)
 
         # Return the filtered data as JSON
+        print("results from this request")
+        print(filtered_array)
         return jsonify(filtered_array)
     except Exception as e:
         # Return an error message if something went wrong
