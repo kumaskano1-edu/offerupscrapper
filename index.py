@@ -1,35 +1,41 @@
 from pyOfferUp import fetch
 from flask import Flask, jsonify, request
-import json
 
 app = Flask(__name__)
 
 # Define OfferUp API endpoint
 @app.route('/offerup_posts', methods=['GET'])
 def get_offerup_posts():
-    filtered_array = []
+    combined_results = {}
     try:
-        # Get query parameters from the request
-        search_query = request.args.get('query', default='Samsung tv', type=str)
+        # Multiple search queries
+        search_queries = ["samsung 55", "samsung 65", "lg 65", "lg 60", "samsung 70", "samsung 75", "lg 75"]
+
         min_price = request.args.get('min_price', default=80, type=float)
         max_price = request.args.get('max_price', default=200, type=float)
-        # Make a GET request to the OfferUp API
-        posts = fetch.get_listings(query=search_query, state="California", city="Los Angeles", limit=100)
 
-        # Filter out listings based on price range
-        for post in posts:
-            price = float(post.get("price", 0))  # Safely get the price and default to 0 if missing
-            if min_price < price <= max_price:
-                filtered_array.append(post)
+        for query in search_queries:
+            posts = fetch.get_listings(query=query, state="California", city="Los Angeles", limit=100)
+            
+            for post in posts:
+                # Safely get price and default to 0
+                price = float(post.get("price", 0))
+                listing_id = post.get("listingId")  # Use listingId for uniqueness
 
-        # Return the filtered data as JSON
-        print("results from this request")
+                if min_price < price <= max_price and listing_id not in combined_results:
+                    combined_results[listing_id] = post
+
+        # Convert dict values to list
+        filtered_array = list(combined_results.values())
+
+        print("Combined results:")
         print(filtered_array)
         return jsonify(filtered_array)
+
     except Exception as e:
-        # Return an error message if something went wrong
         app.logger.error(f"Error fetching listings: {e}")
         return jsonify({"error": str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)
