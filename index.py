@@ -10,11 +10,11 @@ def get_offerup_posts():
     filtered_array = []
     try:
         # Get query parameters from the request
-        search_query = request.args.get('query', default='Samsung 55', type=str)
+        search_query = request.args.get('query', default='Samsung tv', type=str)
         min_price = request.args.get('min_price', default=80, type=float)
         max_price = request.args.get('max_price', default=180, type=float)
         # Make a GET request to the OfferUp API
-        posts = fetch.get_listings(query=search_query, state="Illinois", city="Chicago", limit=100)
+        posts = fetch.get_listings(query=search_query, state="California", city="Los Angeles", limit=100)
 
         # Filter out listings based on price range
         for post in posts:
