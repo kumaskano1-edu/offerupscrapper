@@ -12,7 +12,7 @@ def get_offerup_posts():
         # Get query parameters from the request
         search_query = request.args.get('query', default='Samsung tv', type=str)
         min_price = request.args.get('min_price', default=80, type=float)
-        max_price = request.args.get('max_price', default=180, type=float)
+        max_price = request.args.get('max_price', default=200, type=float)
         # Make a GET request to the OfferUp API
         posts = fetch.get_listings(query=search_query, state="California", city="Los Angeles", limit=100)
 
