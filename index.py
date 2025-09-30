@@ -9,10 +9,10 @@ def get_offerup_posts():
     combined_results = {}
     try:
         # Multiple search queries
-        search_queries = ["samsung 55", "samsung 65", "lg 65", "lg 60", "samsung 70", "samsung 75", "lg 75"]
+        search_queries = ["samsung 65", "lg 65", "lg 60", "samsung 70", "samsung 75", "lg 75", "oled tv"]
 
         min_price = request.args.get('min_price', default=80, type=float)
-        max_price = request.args.get('max_price', default=200, type=float)
+        max_price = request.args.get('max_price', default=180, type=float)
 
         for query in search_queries:
             posts = fetch.get_listings(query=query, state="California", city="Los Angeles", limit=100)
