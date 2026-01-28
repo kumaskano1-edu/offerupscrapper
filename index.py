@@ -15,7 +15,7 @@ def get_offerup_posts():
         max_price = request.args.get('max_price', default=200, type=float)
 
         for query in search_queries:
-            posts = fetch.get_listings(query=query, state="California", city="Los Angeles", limit=20)
+            posts = fetch.get_listings(query=query, state="California", city="Los Angeles", limit=50)
             
             for post in posts:
                 # Safely get price and default to 0
