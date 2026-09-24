@@ -9,7 +9,7 @@ def get_offerup_posts():
     combined_results = {}
     try:
         # Multiple search queries
-        search_queries = ["samsung 75", "oled 65", "samsung frame", "lg oled 65" ]
+        search_queries = ["samsung 75", "oled 65", "samsung frame", "lg oled 65", "lg 75" ]
 
         min_price = request.args.get('min_price', default=100, type=float)
         max_price = request.args.get('max_price', default=250, type=float)
