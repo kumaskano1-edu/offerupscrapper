@@ -12,7 +12,7 @@ def get_offerup_posts():
         search_queries = ["samsung 75", "oled 65", "samsung frame", "lg oled 65", "lg 75" ]
 
         min_price = request.args.get('min_price', default=100, type=float)
-        max_price = request.args.get('max_price', default=250, type=float)
+        max_price = request.args.get('max_price', default=200, type=float)
 
         for query in search_queries:
             posts = fetch.get_listings(query=query, state="California", city="Los Angeles", limit=50)
